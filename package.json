@@ -1,0 +1,21 @@
+{
+  "name": "npr-mern-client",
+  "version": "1.0.0",
+  "description": "A npr front-page client",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha",
+    "watch": "nodemon server.js"
+  },
+  "author": "Owais Jamil",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "cheerio": "^1.0.0-rc.3",
+    "express": "^4.17.1",
+    "mongoose": "^5.6.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
