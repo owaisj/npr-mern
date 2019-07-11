@@ -16,6 +16,13 @@ const ArticleSchema = new Schema({
         type: String,
         required: true
     },
+    authorName: {
+        type: String,
+        required: true
+    },
+    authorLink: {
+        type: String
+    },
     note: {
         type: Schema.Types.ObjectId,
         ref: 'Note'
