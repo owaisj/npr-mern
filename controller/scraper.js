@@ -4,8 +4,9 @@ const router = express.Router();
 //ODM
 const mongoose = require('mongoose');
 const db = require('../models');
-//TODO: Review connect method Parameters
-mongoose.connect('mongodb://localhost/nprPopulator', { useNewUrlParser: true });
+
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/nprPopulator';
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 //Scraping Dependencies
 const axios = require('axios');
