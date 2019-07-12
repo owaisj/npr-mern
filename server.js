@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(express.static('view'));
 
 //Controller
-app.use('/articles', controller.articles);
+app.use('/api/articles', controller.articles);
 app.use('/grab', controller.scraper);
 
 app.listen(PORT, () => {
