@@ -5,7 +5,14 @@
   "main": "server.js",
   "scripts": {
     "test": "mocha",
-    "watch": "nodemon server.js"
+    "watch": "nodemon server.js",
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
   },
   "author": "Owais Jamil",
   "license": "MIT",
@@ -16,6 +23,7 @@
     "mongoose": "^5.6.2"
   },
   "devDependencies": {
+    "concurrently": "^4.1.1",
     "nodemon": "^1.19.1"
   }
 }
