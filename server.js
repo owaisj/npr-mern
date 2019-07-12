@@ -2,13 +2,17 @@ const express = require('express');
 const controller = require('./controller');
 const app = express();
 const PORT = process.env.PORT || 3001;
+const path = require('path');
 
 //Middleware to parse JSON with bodyparser
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //View Folder for Static Assets
-app.use(express.static('view'));
+if (process.env.NODE_ENV === "production") app.use(express.static('view/build'));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '/view/build/index.html'));
+});
 
 //Controller
 app.use('/api/articles', controller.articles);
