@@ -10,9 +10,6 @@ app.use(express.json());
 
 //View Folder for Static Assets
 if (process.env.NODE_ENV === "production") app.use(express.static('view/build'));
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '/view/build/index.html'));
-});
 
 //Controller
 app.use('/api/articles', controller.articles);
