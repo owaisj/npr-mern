@@ -18,13 +18,19 @@ class Main extends Component {
             <Fragment>
                 {this.state.loading ? 
                     <h1>Loading...</h1> :
-                    this.state.articles.map((item, index) => {
+                    <div style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        maxWidth: '968px'
+                    }}>
+                    {this.state.articles.map((item, index) => {
                         return <Article 
                             key={index}
                             num={index+1}
                             id={item._id}
                         />
-                    })
+                    })}
+                    </div>
                 }
             </Fragment>
         )

@@ -54,9 +54,7 @@ class Article extends Component {
                             </Link>
                         </p>
                         <span>
-                            <a href={this.state.authorLink} target="_blank" rel="noopener noreferrer">
-                                {this.state.authorName}
-                            </a>
+                            Written by <a href={this.state.authorLink} target="_blank" rel="noopener noreferrer">{this.state.authorName}</a>
                         </span>
                     </div>
                 }

@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import { Link } from 'react-router-dom'
 
 const styles = {
     head: {
@@ -23,7 +24,9 @@ class Header extends Component {
         return (
             <div style={styles.head}>
                 <h1>
-                    <span style={styles.logoA}>KUT</span> <span style={styles.logoB}>Scraper</span>
+                    <Link to="/" style={{ textDecoration: 'none'}}>
+                        <span style={styles.logoA}>KUT</span> <span style={styles.logoB}>Scraper</span>
+                    </Link>
                 </h1>
             </div>
         )

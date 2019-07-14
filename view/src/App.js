@@ -9,13 +9,19 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="ui grid container">
+        <div>
           <Header />
-          <Switch>
-            <Route exact path='/' component={Main} />
-            <Route exact path='/notes/:id' component={Notes} />
-            <Route component={None} />
-          </Switch>
+          <div style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center'
+          }}>
+            <Switch>
+              <Route exact path='/' component={Main} />
+              <Route exact path='/notes/:id' component={Notes} />
+              <Route component={None} />
+            </Switch>
+          </div>
         </div>
       </Router>
     )
