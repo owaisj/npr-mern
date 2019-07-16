@@ -39,8 +39,10 @@ class Notes extends Component {
     componentDidMount() {
         this.grabArticle();
     };
-    componentDidUpdate() {
-        this.grabArticle();
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.loading !== prevState.loading) {
+            this.grabArticle();
+        }
     }
     render() {
         const content = this.state.article;
@@ -75,9 +77,9 @@ class Notes extends Component {
                         <p>
                             Message
                         </p>
-                        <input id="body" name="body" />
+                        <textarea id="body" name="body" />
                         <br />
-                        <button>Update Note</button>
+                        <button>{this.state.notes ? 'Update Note' : 'Post Note'}</button>
                     </form>
                     {this.state.notes ? 
                         <div style={{ margin: '1em'}} >
@@ -88,7 +90,7 @@ class Notes extends Component {
                                 {content.note.body}
                             </p>
                         </div>
-                    : <div style={{ margin: '1em'}}>There are no notes!</div>}
+                    : <div style={{ margin: '1em'}}>There isn't a note yet.</div>}
                 </div>
             </div>
         )

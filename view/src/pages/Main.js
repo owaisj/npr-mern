@@ -11,13 +11,15 @@ class Main extends Component {
     }
     grabArticles() {
         fetch('/api/articles').then(res=>res.json())
-        .then(data=>this.setState({ articles: data, loading: false }))
+        .then(data => this.setState({ articles: data, loading: false }))
     }
     componentDidMount() {
         this.grabArticles();
     };
-    componentDidUpdate() {
-        this.grabArticles();
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.loading !== prevState.loading) {
+            this.grabArticles();
+        }
     }
     render() {
         return (
@@ -37,19 +39,20 @@ class Main extends Component {
                     </div>
                     {this.state.loading ? 
                         <h1>Loading...</h1> :
-                        this.state.articles.map((item, index) => {
-                            return <Article 
-                                key={index}
-                                num={index+1}
-                                id={item._id}
-                            />
-                        })
+                        (this.state.articles.length === 0 ? <span>There aren't any articles saved</span> :
+                            this.state.articles.reverse().map((item, index) => {
+                                return <Article 
+                                    key={index}
+                                    num={index+1}
+                                    id={item._id}
+                                />
+                            })
+                        )
                     }
                 </div>
             </Fragment>
         )
     }
-
 }
 
 export default Main
