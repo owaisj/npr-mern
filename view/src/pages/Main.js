@@ -9,29 +9,43 @@ class Main extends Component {
             loading: true
         }
     }
-    componentDidMount() {
+    grabArticles() {
         fetch('/api/articles').then(res=>res.json())
         .then(data=>this.setState({ articles: data, loading: false }))
+    }
+    componentDidMount() {
+        this.grabArticles();
     };
+    componentDidUpdate() {
+        this.grabArticles();
+    }
     render() {
         return (
             <Fragment>
-                {this.state.loading ? 
-                    <h1>Loading...</h1> :
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    maxWidth: '968px'
+                }}>
                     <div style={{
                         display: 'flex',
-                        flexDirection: 'column',
-                        maxWidth: '968px'
+                        justifyContent: 'center',
+                        margin: '1em'
                     }}>
-                    {this.state.articles.map((item, index) => {
-                        return <Article 
-                            key={index}
-                            num={index+1}
-                            id={item._id}
-                        />
-                    })}
+                        <button onClick={() => fetch('/grab').then(response => response.text())
+                        .then(data => this.setState({ loading: true}))}>Grab New Articles</button>
                     </div>
-                }
+                    {this.state.loading ? 
+                        <h1>Loading...</h1> :
+                        this.state.articles.map((item, index) => {
+                            return <Article 
+                                key={index}
+                                num={index+1}
+                                id={item._id}
+                            />
+                        })
+                    }
+                </div>
             </Fragment>
         )
     }
